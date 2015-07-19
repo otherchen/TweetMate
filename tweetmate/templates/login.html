@@ -2,26 +2,50 @@
 <html>
 	<head>
 		<title>Login to TweetMate</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+		<!-- JS -->
+		<script href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<!-- FONTS -->
+		<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+
 		<style>
-			#container {
-				width:200px;
-				margin:auto;
-				text-align:center;
-				margin-top:250px;
+			body {
+				font-family: 'Josefin Sans', sans-serif;
+				color:white;
 			}
-			#login {
-				width:130px;
-				height:50px;
-				background-color:lightblue;
+			#landing-content {
+				display: inline-block;
+			    vertical-align: middle;
+			    float: none;
+			    margin-top:35vh;
+			}
+			#landing-section {
+				height:100vh;
+				width:100%;
+				background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{url_for('static', filename='images/wallpaper2.jpg')}}');
+				background-size:cover;
+				text-align:center;
 			}
 		</style>
+
 	</head>
 
 	<body>
-		<div id="container">
-		<form action="/login" method="post">		
-			<input type="submit" value="Log in to Twitter" id="login" />
-		</form>
+
+	<section id="landing-section">
+		<div id="landing-content">
+			<h1>Discover the meaning behind the Tweet</h1>
+			<form action="/login" method="post">
+				<button class="btn btn-info btn-lg" type="submit"><i class="fa fa-twitter fa-fw"></i> Log in with Twitter</button>
+			</form>
 		</div>
+	</section>
+
+
 	</body>
 </html>
