@@ -73,6 +73,30 @@ def index():
     Displays the results of twitter analysis. The contents and 
     purpose of this page is to be determined.
     """
+    # Do something with the twitter api
+    api = tweepy.API(getAuth())
+    user = api.me()
+
+    friends = []
+    match = {}
+
+    # Perform different tasks
+    if request.method == 'POST':
+        if 'tweet' in request.form:
+            api.update_status(status=request.form.get('tweet'))
+        elif 'user_search' in request.form:
+            friends = api.search_users(request.form.get('user_search'), per_page=10)
+        elif 'match' in request.form:
+            match = api.show_friendship(source_id=user.id, target_id=int(request.form.get('match')))
+            # look at sentiment analysis between the two friends
+
+    return render_template('index.html', user=user, friends=friends, match=match)
+
+def getAuth():
+    """
+    Helper method to create and return the 'auth' object from the access_key 
+    and access_secret stored in the session object.
+    """
     # Make sure the user is logged in to twitter account
     if session['access_key'] == None or session['access_secret'] == None:
         redirect('/login')
@@ -81,8 +105,5 @@ def index():
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(session['access_key'], session['access_secret'])
 
-    # Do something with the twitter api
-    api = tweepy.API(auth)
-    api.update_status(status='Hello World')
-    user = {'name': 'Andrew'}  # fake user
-    return render_template('index.html', user=user)
+    # Give up the auth object
+    return auth

@@ -5,6 +5,36 @@
 	</head>
 
 	<body>
-		<h1>Hello, {{ user.name }}</h1>
+		<h1>Hello, {{ user.screen_name }}</h1>
+		<img src="{{user.profile_image_url}}" />
+		<h4>You have {{user.followers_count }} followers</h4>
+		<h4>You are following {{user.friends_count }} friends</h4>
+
+
+		<div>
+			<form action="/" method="post">
+				<label for="tweet"/>Write a thought under 140 characters</label>
+				<textarea name="tweet" style="width:300px; height:150px; resize:none;"></textarea>
+				<input type="submit" value="Tweet!"/>
+			</form>
+		</div>
+
+		<div style="float:right;">
+			<form action="/" method="post">
+				<label for="user_search">Search for a friend or follower</label>
+				<input type="text" name="user_search"/>
+				<input type="submit" value="Search!"/>
+			</form>
+			{% for friend in friends %}
+			<li><form action="/" method="post">{{friend.name}} <input type="hidden" name="match" value="{{friend.id}}"/> <input type="submit" value="match!"/> </form></li>
+			{% endfor %}
+		</div>
+
+		<div>
+			{% for item in match %}
+			<li>{{item}}</li>
+			{% endfor %}
+		</div>
+
 	</body>
 </html>
