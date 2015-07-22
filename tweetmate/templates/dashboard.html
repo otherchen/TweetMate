@@ -11,6 +11,7 @@
 
 {% block body %}
 
+		<!-- Profile Information -->
 		<div id="profile-content">
 		<h1 style="color:gray;font-weight:bold;">@{{ user.screen_name }}</h1>
 		<img src="{{user.profile_image_url}}" style="height:50px;width:50px;border-radius:10%;"/>
@@ -28,6 +29,7 @@
 			</div>
 		</div>
 
+		<!-- 20 Timeline Tweets -->
 		<div class="col-md-8 col-md-offset-2">
 			<h2 class="underline bold">20 Most Recent Tweets <span class="pull-right">Positives: {{timeline_results.positive_count}} / Negatives: {{timeline_results.negative_count}}</span></h2>
 			{% for tweet in timeline %}
@@ -44,6 +46,7 @@
 			{% endfor %}
 		</div>
 
+		<!-- Direct Messages -->
 		<div class="col-md-8 col-md-offset-2">
 			<h2 class="underline bold">Direct Messages <span class="pull-right">Positives: {{messages_results.positive_count}} / Negatives: {{messages_results.negative_count}}</span></h2>
 			{% for message in messages %}
@@ -58,10 +61,12 @@
 					</div>
 				</div>
 			{% endfor %}
+
+			<!-- Container for HighChart -->
 			<div id="container" style="width:100%; height:400px;"></div>
 		</div>
 
-		<script>
+	<script>
 		$(function () {
 		    $('#container').highcharts({
 		        title: {
@@ -111,6 +116,6 @@
 		     	}]
 		    });
 		});
-		</script>
+	</script>
 
 {% endblock %}

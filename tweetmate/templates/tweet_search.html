@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Search Twitter{% endblock %}
 
 {% block header %}
 
@@ -12,6 +12,7 @@
 {% block body %}
 
 		<div class="container">
+			<!-- Search Bar -->
 			<div class="row">
 		        <div class="col-md-6 col-md-offset-3" style="text-align:center;">
 			        <form action="{{url_for('tweet_search')}}" method="get">
@@ -29,6 +30,7 @@
 			        </form>
 			    </div>
 			</div>
+			<!-- Tweet Results -->
 			<div class="col-md-8 col-md-offset-2">
 				{% if query != "" %}<h2 class="underline bold">Tweets for: <span class="gray">{{query}}</span><span class="pull-right">Positives: {{tweet_sentiments.positive_count}} / Negatives: {{tweet_sentiments.negative_count}}</span></h2>{% endif %}
 				{% for tweet in found_tweets %}
@@ -43,6 +45,8 @@
 						</div>
 					</div>
 				{% endfor %}
+
+				<!-- Line Graph Container -->
 				{% if query != "" %}<div id="container" style="width:100%; height:400px;"></div>{% endif %}
 			</div>
 		</div>
@@ -92,6 +96,6 @@
 		        }]
 		    });
 		});
-		</script>	
+	</script>	
 
 {% endblock %}

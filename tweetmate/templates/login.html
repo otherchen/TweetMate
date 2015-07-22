@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
+		<!-- Meta Tags -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Discover the meaning behind the Tweet">
+		<meta name="keywords" content="TweetMate, Twitter, Sentiment, Analysis">
+		<meta name="author" content="Andrew Chen">
+
 		<title>Log in to TweetMate</title>
 
 		<!-- CSS -->
@@ -37,15 +45,15 @@
 
 	<body>
 
-	<section id="landing-section">
-		<div id="landing-content">
-			<h1>Discover the meaning behind the Tweet</h1>
-			<form action="{{url_for('login')}}" method="post">
-				<button class="btn btn-info btn-lg" type="submit"><i class="fa fa-twitter fa-fw"></i> Log in with Twitter</button>
-			</form>
-		</div>
-	</section>
-
+		<!-- Landing Page -->
+		<section id="landing-section">
+			<div id="landing-content">
+				<h1>Discover the meaning behind the Tweet</h1>
+				<form action="{{url_for('login')}}" method="post">
+					<button class="btn btn-info btn-lg" type="submit"><i class="fa fa-twitter fa-fw"></i> Log in with Twitter</button>
+				</form>
+			</div>
+		</section>
 
 	</body>
 </html>
