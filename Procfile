@@ -1,1 +1,1 @@
-web: gunicorn tweetmate:views
+web: gunicorn tweetmate:app
