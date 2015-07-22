@@ -1,2 +1,2 @@
 # TweetMate
-Twitter Bot that analyzes the current user's associates and produces insight into their relationships
+TweetMate is a web app that allows users to search for and perform sentiment analysis on recent tweets. This serves as a compliment to Twitter and helps enhance the information we can gather from tweets. I know that there are many other Twitter sentiment analysis projects out there but I wanted to build my own as an academic exercise at AngelHack SV 2015. I finished about 3/4 of the project at the hackathon then completed and deployed it 3 days later.
