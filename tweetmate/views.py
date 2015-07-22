@@ -9,7 +9,6 @@ import datetime
 ### CONSTANTS ###
 CONSUMER_KEY = "Tg3cnT83iIGskDX4XYzLfSKEM"
 CONSUMER_SECRET = "89rVUFooDhKyNomRlElY6MGsfcNapN9Utvsbnz2FCLqd0Ccd8l"
-CALLBACK_URL = url_for('call_back')
 
 ### Mandatory Secret Key ###
 app.secret_key = 'super_secret_key'
@@ -38,7 +37,7 @@ def login():
     """
     if request.method == 'POST':
         # Creating OAuthHandler object with a callback url
-        auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL)
+        auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, url_for('call_back'))
 
         # Assigning the redirect_url to the previously assigned callback
         try:
