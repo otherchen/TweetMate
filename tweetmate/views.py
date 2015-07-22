@@ -9,7 +9,7 @@ import datetime
 ### CONSTANTS ###
 CONSUMER_KEY = "Tg3cnT83iIGskDX4XYzLfSKEM"
 CONSUMER_SECRET = "89rVUFooDhKyNomRlElY6MGsfcNapN9Utvsbnz2FCLqd0Ccd8l"
-CALLBACK_URL = "http://localhost:5000/call_back"
+CALLBACK_URL = url_for('call_back')
 
 ### Mandatory Secret Key ###
 app.secret_key = 'super_secret_key'
