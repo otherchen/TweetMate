@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header %}
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}
+
+{% block body %}
+
+		<div class="container">
+			<div class="row">
+		        <div class="col-md-6 col-md-offset-3" style="text-align:center;">
+			        <form action="{{url_for('friendships')}}" method="get">
+			    		<h2>Search for Your Companions</h2>
+			            <div id="custom-search-input">
+			                <div class="input-group col-md-12">
+			                    <input type="text" class="form-control input-lg" name="q" placeholder="Enter a name or username" />
+			                    <span class="input-group-btn">
+			                        <button class="btn btn-info btn-lg" type="submit">
+			                            <i class="glyphicon glyphicon-search"></i>
+			                        </button>
+			                    </span>
+			                </div>
+			            </div>
+			        </form>
+			    </div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<!-- user results -->
+				{% if query != "" %}<h2 class="underline bold">Users for: <span class="gray">{{query}}</span></h2>{% endif %}
+				{% for friend in friends %}
+					<div class="row panel search-result">
+						<a href="{{url_for('friendships')}}?id={{friend.id}}" class="search-result">
+							<div class="col-md-9">
+								<span class="bold large gray">{{friend.name}}</span> @{{friend.screen_name}}<br/>
+								<img src="{{friend.profile_image_url}}" style="height:40px;width:40px;border-radius:10%;"/>
+							</div>
+							<div class="col-md-3" style="text-align:right;">
+								<span class="bold">Joined {{friend.created_at.strftime('%b %d, %Y')}}</span><br/>
+								<h4 class="bold">{{friend.location}}</h4>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+
+				<!-- line graph -->
+				{% if query != "" %}<div id="container" style="width:100%; height:400px;"></div>{% endif %}
+
+				<!-- friendship results -->
+				{% if selected != "" %}<h2 class="underline bold">Friendship with: <span class="gray">{{selected.name}}</span></h2>{% endif %}
+				{% for item in fship if item.screen_name == user.screen_name %}
+					<div class="row panel bold large">
+						<div class="col-md-6">
+							You are following <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.following == true %} class="true" {% elif item.following == false %} class="false" {% endif %}>{{item.following}}</span><br/>
+							<span class="gray">@{{selected.screen_name}}</span> is following you: <span {% if item.followed_by == true %} class="true" {% elif item.followed_by == false %} class="false" {% endif %}>{{item.followed_by}}</span><br/>
+							You can DM <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.can_dm == true %} class="true" {% elif item.can_dm == false %} class="false" {% endif %}>{{item.can_dm}}</span><br/>
+						</div>
+						<div class="col-md-6" style="text-align:right;">
+							You are blocking <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.blocking == true %} class="true" {% elif item.blocking == false %} class="false" {% endif %}>{{item.blocking}}</span><br/>
+							<span class="gray">@{{selected.screen_name}}</span> is blocking you: <span {% if item.blocked_by == true %} class="true" {% elif item.blocked_by == false %} class="false" {% endif %}>{{item.blocked_by}}</span><br/>
+							You are muting <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.muting == true %} class="true" {% elif item.muting == false %} class="false" {% endif %}>{{item.muting}}</span><br/>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+	<script>
+		$(function () {
+		    $('#container').highcharts({
+		        title: {
+		            text: "'{{query}}' Sentiment vs Time",
+		            x: -20 //center
+		        },
+		        subtitle: {
+		            text: "Measures the positive or negative nature of recent tweets on '{{query}}'",
+		            x: -20
+		        },
+		        xAxis: {
+		            type: 'datetime',
+	                title: {
+	                    text: 'Date'
+	                },
+	                dateTimeLabelFormats: {
+                		day: '%e of %b'
+            		}
+		        },
+		        yAxis: {
+		            title: {
+		                text: 'Sentiment Score (-1 to 1)'
+		            },
+		            plotLines: [{
+		                value: 0,
+		                width: 1,
+		                color: '#808080'
+		            }],
+		            min: -1,
+		            max: 1
+		        },
+		        legend: {
+		            layout: 'vertical',
+		            align: 'right',
+		            verticalAlign: 'middle',
+		            borderWidth: 0
+		        },
+		        series: [{
+		        	type: 'line',
+		            name: 'Tweets',
+		            data:{# {{ search_data|tojson|safe }} #}
+		        }]
+		    });
+		});
+		</script>	
+
+{% endblock %}

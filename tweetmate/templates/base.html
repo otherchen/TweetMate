@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}TweetMate{% endblock %}</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+
+		<!-- JS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<!-- FONTS -->
+		<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+		{% block header %}{% endblock %}
+
+	</head>
+
+	<body>
+
+		<!-- Navbar header -->
+		<header>
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#"><span id="tweet-logo">Tweet</span><span id="mate-logo">Mate</span></a>
+			    </div>
+
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <form class="navbar-form navbar-center" action="{{url_for('index')}}" method="post">
+			        <div class="form-group">
+			          <input type="text" class="form-control" name="tweet" maxlength="140" placeholder="What are you thinking?">
+			        </div>
+			        <button type="submit" class="btn btn-default">Tweet</button>
+			      </form>
+			      <ul class="nav navbar-nav navbar-right">
+			        <li class="dropdown">
+		                <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{ user.name }} <b class="caret"></b></a>
+		                <ul class="dropdown-menu">
+		                    <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+		                    <li><a href="{{url_for('friendships')}}">Friendships</a></li>
+		                    <li><a href="{{url_for('tweet_search')}}">Tweet Search</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+		                </ul>
+		            </li>
+			      </ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+		</header>
+
+		{% block body %}{% endblock %}
+
+	</body>
+
+</html>

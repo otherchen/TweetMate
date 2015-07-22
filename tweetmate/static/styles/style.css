@@ -1,0 +1,106 @@
+body {
+	font-family: 'Josefin Sans', sans-serif;
+}
+#tweet-logo {
+	font-weight:bold;
+	font-size:1.5em;
+	font-family: 'Montserrat', sans-serif;
+}
+#mate-logo {
+	font-weight:bold;
+	color:darkgray;
+	font-size:1.5em;
+}
+.navbar-form {
+	width: 500px;
+	margin:auto;
+}
+.form-control {
+	min-width:400px;
+}
+.form-group{
+	width:none;
+}
+.navbar-center{
+	position: absolute;
+	width: 100%;
+	left: 0;
+	text-align: center;
+	margin: auto;
+	margin-top:7.5px;
+}
+#profile-content{
+	width:35%;
+	min-width:300px;
+	margin:auto;
+	text-align:center;
+}
+.profile-number{
+	font-size:1.25em;
+	font-weight:bold;
+	color:#5C9178;
+}
+#custom-search-input{
+	padding: 3px;
+	border: solid 1px #E4E4E4;
+	border-radius: 6px;
+	background-color: #fff;
+}
+#custom-search-input input{
+	border: 0;
+	box-shadow: none;
+}
+#custom-search-input button{
+	margin: 2px 0 0 0;
+	background: none;
+	box-shadow: none;
+	border: 0;
+	color: #666666;
+	padding: 0 8px 0 10px;
+	border-left: solid 1px #ccc;
+}
+#custom-search-input button:hover{
+	border: 0;
+	box-shadow: none;
+	border-left: solid 1px #ccc;
+}
+.timeline-content{
+	/*background-color:tan;
+	margin:100px;*/
+}
+.favorites-content{
+	background-color:orange;
+	margin:100px;
+}
+.messages-content{
+	background-color:lightgreen;
+	margin:100px;
+}
+.bold{
+	font-weight:bold;
+}
+.large{
+	font-size:1.3em;
+}
+.xlarge{
+	font-size:1.5em;
+}
+.gray{
+	color:darkgray;
+}
+.underline{
+	border-bottom:2px solid darkred;
+}
+.search-result {
+	color:inherit;
+}
+.search-result:hover {
+	background-color:lemonchiffon;
+	color:inherit;
+}
+.true{
+	color:lightgreen;
+}
+.false{
+	color:lightsalmon;
+}

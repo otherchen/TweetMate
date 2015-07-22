@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header %}
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}
+
+{% block body %}
+
+		<div id="profile-content">
+		<h1 style="color:gray;font-weight:bold;">@{{ user.screen_name }}</h1>
+		<img src="{{user.profile_image_url}}" style="height:50px;width:50px;border-radius:10%;"/>
+			<div class="row">
+				<div class="col-md-6" style="text-align:right;">
+					<h4>Following: <span class="profile-number">{{user.friends_count}}</span></h4>
+					<h4>Followers: <span class="profile-number">{{user.followers_count}}</span></h4>
+					<h4>Tweets: <span class="profile-number">{{user.statuses_count}}</span></h4>
+				</div>
+				<div class="col-md-6" style="text-align:left;">
+					<h4>Location: <span class="profile-number">{{user.location}}</span></h4>
+					<h4>Twitter Vibe: <span class="profile-number">{{avg_type}}</span></h4>
+					<h4>Positivity Level: <span class="profile-number">{{'%0.2f'| format(avg_score|float)}}</span></h4>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="underline bold">20 Most Recent Tweets <span class="pull-right">Positives: {{timeline_results.positive_count}} / Negatives: {{timeline_results.negative_count}}</span></h2>
+			{% for tweet in timeline %}
+				<div class="row panel">
+					<div class="col-md-9">
+						<span class="bold large gray">{{tweet.author.name}}</span> @{{tweet.author.screen_name}}<br/>
+						<span class="bold large">{{tweet.text}}</span><br/>
+					</div>
+					<div class="col-md-3" style="text-align:right;">
+						<span class="bold">{{tweet.created_at.strftime('%b %d, %Y')}}</span><br/>
+						<h4 class="bold">{{'%0.2f'| format(timeline_results.scores_list[loop.index0]|float)}} {{timeline_results.types_list[loop.index0]}}</h4>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="underline bold">Direct Messages <span class="pull-right">Positives: {{messages_results.positive_count}} / Negatives: {{messages_results.negative_count}}</span></h2>
+			{% for message in messages %}
+				<div class="row panel">
+					<div class="col-md-9">
+					<span class="bold large">Sent to: </span><span style="font-weight:bold;font-size:1.5em;color:darkgray;">@{{message.recipient_screen_name}}</span> <br/>
+					<span class="bold large">{{ message.text }}</span><br/>
+					</div>
+					<div class="col-md-3" style="text-align:right;">
+						<span class="bold">{{message.created_at.strftime('%b %d, %Y')}}</span>
+						<h4 class="bold">{{'%0.2f'| format(messages_results.scores_list[loop.index0]|float)}} {{messages_results.types_list[loop.index0]}}</h4>
+					</div>
+				</div>
+			{% endfor %}
+			<div id="container" style="width:100%; height:400px;"></div>
+		</div>
+
+		<script>
+		$(function () {
+		    $('#container').highcharts({
+		        title: {
+		            text: 'Activity Sentiment vs Time',
+		            x: -20 //center
+		        },
+		        subtitle: {
+		            text: 'Measures the positive or negative nature of your recent tweets and messages',
+		            x: -20
+		        },
+		        xAxis: {
+		            type: 'datetime',
+	                title: {
+	                    text: 'Date'
+	                },
+	                dateTimeLabelFormats: {
+                		day: '%e of %b'
+            		}
+		        },
+		        yAxis: {
+		            title: {
+		                text: 'Sentiment Score (-1 to 1)'
+		            },
+		            plotLines: [{
+		                value: 0,
+		                width: 1,
+		                color: '#808080'
+		            }],
+		            min: -1,
+		            max: 1
+		        },
+		        legend: {
+		            layout: 'vertical',
+		            align: 'right',
+		            verticalAlign: 'middle',
+		            borderWidth: 0
+		        },
+		        series: [{
+		        	type: 'line',
+		            name: 'Tweets',
+		            data:{{ tl_data|tojson|safe }} 
+		        },
+		        {
+		        	type: 'line',
+		         	name: "DM's",
+		         	data:{{ dm_data|tojson|safe }} 
+		     	}]
+		    });
+		});
+		</script>
+
+{% endblock %}

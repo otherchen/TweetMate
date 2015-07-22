@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Login to TweetMate</title>
+		<title>Log in to TweetMate</title>
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -27,7 +27,7 @@
 			#landing-section {
 				height:100vh;
 				width:100%;
-				background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{url_for('static', filename='images/wallpaper2.jpg')}}');
+				background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{url_for('static', filename='images/wallpaper.jpg')}}');
 				background-size:cover;
 				text-align:center;
 			}
@@ -40,7 +40,7 @@
 	<section id="landing-section">
 		<div id="landing-content">
 			<h1>Discover the meaning behind the Tweet</h1>
-			<form action="/login" method="post">
+			<form action="{{url_for('login')}}" method="post">
 				<button class="btn btn-info btn-lg" type="submit"><i class="fa fa-twitter fa-fw"></i> Log in with Twitter</button>
 			</form>
 		</div>
