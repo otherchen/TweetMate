@@ -37,7 +37,7 @@ def login():
     """
     if request.method == 'POST':
         # Creating OAuthHandler object with a callback url
-        auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, url_for('call_back'))
+        auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, url_for('call_back', _external=True))
 
         # Assigning the redirect_url to the previously assigned callback
         try:
