@@ -45,14 +45,24 @@
 				{% for item in fship if item.screen_name == user.screen_name %}
 					<div class="row panel bold large">
 						<div class="col-md-6">
+
+						<!-- You are following other-->
 							You are following <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.following == true %} class="true" {% elif item.following == false %} class="false" {% endif %}>{{item.following}}</span><br/>
-							<span class="gray">@{{selected.screen_name}}</span> is following you: <span {% if item.followed_by == true %} class="true" {% elif item.followed_by == false %} class="false" {% endif %}>{{item.followed_by}}</span><br/>
-							You can DM <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.can_dm == true %} class="true" {% elif item.can_dm == false %} class="false" {% endif %}>{{item.can_dm}}</span><br/>
+						<!-- You are blocking other -->
+							You are blocking <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.blocking == true %} class="true" {% elif item.blocking == false %} class="false" {% endif %}>{{item.blocking}}</span><br/>
+						<!-- You are muting other -->
+							You are muting <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.muting == true %} class="true" {% elif item.muting == false %} class="false" {% endif %}>{{item.muting}}</span><br/>
+
 						</div>
 						<div class="col-md-6" style="text-align:right;">
-							You are blocking <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.blocking == true %} class="true" {% elif item.blocking == false %} class="false" {% endif %}>{{item.blocking}}</span><br/>
+
+						<!-- Other is following you -->
+							<span class="gray">@{{selected.screen_name}}</span> is following you: <span {% if item.followed_by == true %} class="true" {% elif item.followed_by == false %} class="false" {% endif %}>{{item.followed_by}}</span><br/>
+						<!-- Other is blocking you -->
 							<span class="gray">@{{selected.screen_name}}</span> is blocking you: <span {% if item.blocked_by == true %} class="true" {% elif item.blocked_by == false %} class="false" {% endif %}>{{item.blocked_by}}</span><br/>
-							You are muting <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.muting == true %} class="true" {% elif item.muting == false %} class="false" {% endif %}>{{item.muting}}</span><br/>
+						<!-- You can dm other -->
+							You can DM <span class="gray">@{{selected.screen_name}}</span>: <span {% if item.can_dm == true %} class="true" {% elif item.can_dm == false %} class="false" {% endif %}>{{item.can_dm}}</span><br/>
+
 						</div>
 					</div>
 				{% endfor %}
