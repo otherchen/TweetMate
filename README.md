@@ -1,8 +1,8 @@
 # TweetMate
-TweetMate is a web app that allows users to search for and perform sentiment analysis on recent tweets. This serves as an accessory to Twitter and helps enhance the information we can gather from tweets. I know that there are many other Twitter sentiment analysis projects out there but I wanted to build my own as an academic exercise at AngelHack SV 2015. I finished about 3/4 of the project at the hackathon then completed and deployed it 3 days later.
+TweetMate is a web app that allows users to search for and perform sentiment analysis on recent tweets. This serves as an accessory to Twitter and helps enhance the information available to users. I know that there are many other Twitter sentiment analysis projects out there but I wanted to build my own as an academic exercise at AngelHack SV 2015. I finished about 3/4 of the project at the hackathon then completed and deployed it 3 days later. Feel free to visit the site at **[tweetmate.herokuapp.com](http://tweetmate.herokuapp.com/)**.
 
 ### Technologies
-1. **Languages**: Python, HTML, CSS, JavaScript
+1. **Languages**: Python, HTML, CSS
 2. **Frameworks**: Flask, Bootstrap
 3. **WSGI Server**: Gunicorn
 
@@ -18,4 +18,4 @@ TweetMate is a web app that allows users to search for and perform sentiment ana
 
 3. **Friendships**: Search for users by name or username. Find out whether someone is following you, blocking you, or muting you. Also find out if you're following or blocking someone else.
 
-4. **Twitter Search**: Search for tweets by keyword or phrase. Find out how the Twittersphere is feeling about a certain topic through the positivity and/or negativity of each tweet.
+4. **Twitter Search**: Search for tweets by keyword or phrase. Find out how the Twittersphere is feeling about a certain topic or trend through the positivity and/or negativity of each tweet.
